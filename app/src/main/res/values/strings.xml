@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BurritoBuddy</string>
+    <string name="title_activity_burrito_place_map">Map</string>
+</resources>
