@@ -10,23 +10,10 @@ import java.util.ArrayList;
 
 public class MainPresenterImpl implements MainPresenter {
 
-    private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private MainView mMainView;
-
 
     public MainPresenterImpl(MainView mainView){
         this.mMainView = mainView;
-    }
-
-
-    @Override
-    public void onResume() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
     }
 
     @Override

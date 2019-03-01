@@ -7,10 +7,6 @@ package com.example.burritobuddy.presenter;
 
 public interface MainPresenter {
 
-    void onResume();
-
-    void onDestroy();
-
     void getNearbyBurritoPlaces(double latitude, double longitude);
 
 }

@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String EXTRA_PLACE = "extra_place";
 
+    // Used to get the user's current location
     private FusedLocationProviderClient mFusedLocationClient;
 
     private static final int mLocationRequestCode = 1000;
