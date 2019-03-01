@@ -23,6 +23,8 @@ import com.example.burritobuddy.R;
 import com.example.burritobuddy.adapter.BurritoPlacesAdapter;
 import com.example.burritobuddy.model.BurritoPlace;
 import com.example.burritobuddy.presenter.MainPresenterImpl;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,28 +69,37 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mAdapter.setData(new ArrayList<BurritoPlace>());
         mPlacesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mPlacesRecyclerView.setAdapter(mAdapter);
-        mPlacesRecyclerView.setVisibility(View.GONE);
 
-        getCurrentLocation(this);
+        showProgress();
+
+
+        // Make sure Google Play Services is installed an updated on this device before using its APIs.
+        if(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS){
+            getCurrentLocation(this);
+        } else {
+            Toast.makeText(this, "Google Play Services is missing or outdated. Please install it or update to use BurritoBuddy", Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
 
     @Override
     public void displayNearbyResults(ArrayList<BurritoPlace> placesList) {
-        mProgress.setVisibility(View.INVISIBLE);
-        mPlacesRecyclerView.setVisibility(View.VISIBLE);
+        hideProgress();
         mAdapter.setData(placesList);
     }
 
     @Override
     public void hideProgress() {
-
+        mProgress.setVisibility(View.INVISIBLE);
+        mPlacesRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showProgress() {
-
+        mPlacesRecyclerView.setVisibility(View.GONE);
+        mProgress.setVisibility(View.VISIBLE);
     }
 
     @Override
